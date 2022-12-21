@@ -16,7 +16,7 @@ describe('todo test suits', ()=>{
   });
   test('respond with json at /todos', async () =>{
     const response = await agent.post('/todos').send({
-      'title': 'Buy Soda',
+      'title': 'Buy Milk',
       'dueDate': new Date().toISOString(),
       'comppleted': false,
     });
@@ -30,7 +30,7 @@ describe('todo test suits', ()=>{
 
   test('Marks a todo with the given ID as complete', async () => {
     const response = await agent.post('/todos').send({
-      title: 'Buy soda',
+      title: 'Buy milk',
       dueDate: new Date().toISOString(),
       completed: false,
     });
