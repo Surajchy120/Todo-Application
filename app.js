@@ -2,14 +2,18 @@
 const {request, response} = require('express');
 const express = require('express');
 const app = express();
+const csrf = require('csurf');
 
 const {Todo} = require('./models');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 
 app.use(express.urlencoded({extended: false}));
 const path = require('path');
 
 app.use(bodyParser.json());
+app.use(cookieParser('ssh!!!! some secret string'));
+app.use(csrf({cookie: true}));
 
 
 // seting the ejs is the engine
@@ -23,9 +27,10 @@ app.get('/', async (request, response)=>{
   if (request.accepts('html')) {
     response.render('index', {
       allTodos, overdue, dueToday, dueLater,
+      csrfToken: request.csrfToken(),
     });
   } else {
-    response.json({allTodos});
+    response.json({allTodos, overdue, dueToday, dueLater});
   }
 });
 
@@ -71,11 +76,12 @@ app.put('/todos/:id/markAsCompleted', async (request, response)=>{
 
 app.delete('/todos/:id', async function(request, response) {
   console.log('We have to delete a Todo with ID: ', request.params.id);
+  // FILL IN YOUR CODE HERE
 
   // First, we have to query our database to delete a Todo by ID.
   // eslint-disable-next-line max-len
   // Then, we have to respond back with true/false based on whether the Todo was deleted or not.
-  
+  // response.send(true)
   const deleteFlag = await Todo.destroy({where: {id: request.params.id}});
   response.send(deleteFlag ? true : false);
 });
