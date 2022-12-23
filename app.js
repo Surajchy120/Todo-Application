@@ -54,37 +54,18 @@ app.post('/todos', async (request, response)=>{
   }
 });
 
-// app.post("/todos",(request,response)=>{
-//     console.log("Creating a todo", request.body);
-// })
-
-// PUT http://localhost/todos/1/markAsCompleted
-app.put('/todos/:id/markAsCompleted', async (request, response)=>{
-  console.log('We have updated a todo with id:', request.params.id);
+app.put('/todos/:id', async (request, response) => {
   const todo = await Todo.findByPk(request.params.id);
   try {
-    const updatedTodo = await todo.markAsCompleted();
-    return response.json(updatedTodo);
+    const upTodo = await todo.setCompletionStatus(request.body.completed);
+    return response.json(upTodo);
   } catch (error) {
-    console.log(error);
     return response.status(422).json(error);
   }
 });
 
-// app.delete('/todos/:id', (request, response)=>{
-//   console.log('Delete a todo by id', request.params.id);
-// });
 app.delete('/todos/:id', async function(request, response) {
   console.log('We have to delete a Todo with ID: ', request.params.id);
-  try {
-    await Todo.remove(request.params.id);
-    return response.json({sucess: true});
-  } catch (error) {
-    return response.status(422).json(error);
-  }
-});
-
-
   // FILL IN YOUR CODE HERE
 
   // First, we have to query our database to delete a Todo by ID.
