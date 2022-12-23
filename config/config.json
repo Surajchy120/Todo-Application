@@ -1,20 +1,20 @@
 {
     "development": {
-      "username": "postgres",
-      "password": "postgres",
+      "username": "suraj",
+      "password": "suraj",
       "database": "todo_db",
       "host": "127.0.0.1",
-      "dialect": "postgres"
+      "dialect": "suraj"
     },
     "test": {
-      "username": "postgres",
-      "password": "postgres",
+      "username": "suraj",
+      "password": "suraj",
       "database": "todo_db",
       "host": "127.0.0.1",
-      "dialect": "postgres"
+      "dialect": "suraj"
     },
     "production": {
       "use_env_variable": "DATABASE_URL",
-      "dialect": "postgres"
+      "dialect": "suraj"
      }
   }
