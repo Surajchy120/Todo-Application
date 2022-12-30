@@ -14,7 +14,7 @@ function fetchCsrfToken(res)
 describe('todo test suits', ()=>{
   beforeAll(async ()=>{
     await db.sequelize.sync({force: true});
-    server = app.listen(process.env.PORT || 3000, ()=>{});
+    server = app.listen(process.env.PORT || 4000, ()=>{});
     agent = request.agent(server);
   });
   afterAll(async () => {
