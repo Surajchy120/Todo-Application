@@ -3,12 +3,9 @@
 const express = require("express");
 const app = express();
 const csrf = require("tiny-csrf");
-
 const { Todo, User } = require("./models");
-
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
-
 const passport = require("passport");
 const connectEnsureLogin = require("connect-ensure-login");
 const session = require("express-session");
@@ -154,11 +151,11 @@ app.get("/signup",(request,response) => {
 
 app.post("/users", async (request, response) => {
   if (request.body.firstName.length == 0) {
-    request.flash("error", "Please enter your FirstName");
+    request.flash("error", "Enter your FirstName");
     return response.redirect("/signup");
   }
   if (request.body.email.length == 0) {
-    request.flash("error", "Please enter your Email-address");
+    request.flash("error", "Enter your Email");
     return response.redirect("/signup");
   }
   if (request.body.password.length < 8) {
