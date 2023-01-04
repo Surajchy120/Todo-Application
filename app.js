@@ -93,7 +93,7 @@ app.get("/", async(request, response) => {
   }
   else{
     response.render("index", {
-      title: "TO_DO_Application",
+      title: "TO_DO_Application(suraj)",
       csrfToken: request.csrfToken(),
    });
   }
@@ -113,7 +113,7 @@ app.get(
       const completedItems = await Todo.completedItems(loggedInUser);
       if (request.accepts("html")) {
         response.render("todos", {
-          title: "TO_DO_Apllication",
+          title: "TO_DO_Apllication(suraj)",
           userName,
           allTodos,
           overdue,
